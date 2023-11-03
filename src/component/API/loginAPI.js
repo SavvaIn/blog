@@ -1,4 +1,4 @@
-import { setLogged, setUser, setErrorState } from "../../store/action";
+import { setLogged, setUser, setErrorState } from "../store/action";
 import axios from "./axios";
 
 const baseURL = `https://blog.kata.academy/api/`;
