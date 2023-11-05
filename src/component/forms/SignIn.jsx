@@ -9,7 +9,7 @@ import { signInSchema } from "../Yup/yup";
 
 import styles from "../App/App.module.scss";
 
-export default function SignIn() {
+function SignIn() {
   const dispatch = useDispatch();
   const { errorState, logged } = useSelector((state) => state.reduserLogin);
   const history = useHistory();
@@ -76,3 +76,5 @@ export default function SignIn() {
     </div>
   );
 }
+
+export { SignIn };

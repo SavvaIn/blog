@@ -10,7 +10,7 @@ import { signUpSchema } from "../Yup/yup";
 
 import styles from "../App/App.module.scss";
 
-export default function SignUp() {
+function SignUp() {
   const dispatch = useDispatch();
   const reduserLogin = useSelector((state) => state.reduserLogin);
   const { errorState, user } = reduserLogin;
@@ -170,3 +170,5 @@ export default function SignUp() {
     </div>
   );
 }
+
+export { SignUp };

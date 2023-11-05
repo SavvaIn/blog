@@ -6,7 +6,7 @@ const initialState = {
   errorState: "",
 };
 
-export default function reduserLogin(state = initialState, action) {
+function reduserLogin(state = initialState, action) {
   switch (action.type) {
     case SET_LOGGED:
       return {
@@ -27,3 +27,5 @@ export default function reduserLogin(state = initialState, action) {
       return state;
   }
 }
+
+export { reduserLogin };

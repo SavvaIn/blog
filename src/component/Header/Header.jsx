@@ -1,18 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-import { setLogOut } from "../API/loginAPI";
+import { setLogged, setUser, setErrorState } from "../../store/action";
 
 import styles from "./Header.module.scss";
+import defaultAuthorImage from "../../assets/img/defaultAuthorImage.png";
 
-export default function Header() {
+function Header() {
   const dispatch = useDispatch();
   const { logged, user } = useSelector((state) => state.reduserLogin);
-  const image = user.image
-    ? user.image
-    : "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
+  const image = user.image ? user.image : defaultAuthorImage;
   const name = user ? user.username : "none";
   const history = useHistory();
+
+  const setLogOut = () => async (dispatch) => {
+    try {
+      localStorage.removeItem("token");
+      dispatch(setUser({}));
+      dispatch(setLogged(false));
+      dispatch(setErrorState(""));
+    } catch (error) {
+      dispatch(setErrorState(error));
+    }
+  };
 
   const handleLogOut = () => {
     dispatch(setLogOut());
@@ -58,3 +68,5 @@ export default function Header() {
     </div>
   );
 }
+
+export { Header };

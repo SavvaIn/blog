@@ -5,13 +5,17 @@ import { useParams, useHistory } from "react-router-dom";
 import { message, Spin } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { getArticle, editArticle, newArticle } from "../API/articleAPI";
+import {
+  getArticle,
+  editArticle,
+  newArticle,
+} from "../../service/API/articleAPI";
 import { articleFormSchema } from "../Yup/yup";
 
 import styles from "./CreateArticle.module.scss";
 
 let maxId = 1;
-export default function CreateArticle() {
+function CreateArticle() {
   const { logged } = useSelector((state) => state.reduserLogin);
   const {
     register,
@@ -217,3 +221,5 @@ export default function CreateArticle() {
     </>
   );
 }
+
+export { CreateArticle };

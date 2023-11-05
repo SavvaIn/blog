@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Spin } from "antd";
 
-import { getArticle } from "../API/articleAPI";
-import Article from "../Article/Article";
+import { getArticle } from "../../service/API/articleAPI";
+import { Article } from "../Article/Article";
 
 import styles from "./CreatePost.module.scss";
 
-export default function CreatePost() {
+function CreatePost() {
   const { slug } = useParams();
   const [error, setError] = useState(false);
   const [data, setData] = useState(null);
@@ -39,3 +39,5 @@ export default function CreatePost() {
     </div>
   );
 }
+
+export { CreatePost };

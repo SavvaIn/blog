@@ -1,6 +1,10 @@
-import { signUp, signIn, updateUser } from "../component/API/loginAPI";
 import { SET_LOGGED, SET_USER, SET_ERROR } from "./actionTypes";
-import { instanceAxios } from "../component/API/loginAPI";
+import {
+  signUp,
+  signIn,
+  updateUser,
+  instanceAxios,
+} from "../service/API/loginAPI";
 
 export const setLogged = (logged) => ({
   type: SET_LOGGED,

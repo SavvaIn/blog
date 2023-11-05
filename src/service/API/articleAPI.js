@@ -1,5 +1,5 @@
 import axios from "./axios";
-import authHeader from "./localStorage";
+import { authHeader } from "./localStorage";
 
 const baseURL = `https://blog.kata.academy/api/articles`;
 

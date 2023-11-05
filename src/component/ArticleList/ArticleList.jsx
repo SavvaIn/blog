@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Pagination, Spin, Alert } from "antd";
 
-import { getArticleList } from "../API/articleAPI";
-import Article from "../Article/Article";
+import { getArticleList } from "../../service/API/articleAPI";
+import { Article } from "../Article/Article";
 import styles from "./ArticleList.module.scss";
 
 function ArticleList() {
@@ -59,4 +59,4 @@ function ArticleList() {
   );
 }
 
-export default ArticleList;
+export { ArticleList };

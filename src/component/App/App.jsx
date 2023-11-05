@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { checkAuth } from "../API/loginAPI";
-import { getArticleList } from "../API/articleAPI";
+import { fetchUserData } from "../../service/API/loginAPI";
+import { setLogged, setUser, setErrorState } from "../../store/action";
 
-import Header from "../Header/Header";
-import SignIn from "../forms/SignIn";
-import SignUp from "../forms/SignUp";
-import Profile from "../forms/Profile";
-import CreatePost from "../forms/CreatePost";
-import CreateArticle from "../CreateArticle/CreateArticle";
-import ArticleList from "../ArticleList/ArticleList";
+import { getArticleList } from "../../service/API/articleAPI";
+
+import { Header } from "../Header/Header";
+import { SignIn } from "../forms/SignIn";
+import { SignUp } from "../forms/SignUp";
+import { Profile } from "../forms/Profile";
+import { CreatePost } from "../forms/CreatePost";
+import { CreateArticle } from "../CreateArticle/CreateArticle";
+import { ArticleList } from "../ArticleList/ArticleList";
 
 import {
   slash,
@@ -28,6 +30,22 @@ import styles from "./App.module.scss";
 
 function App() {
   const dispatch = useDispatch();
+  const checkAuth = () => async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const userData = await fetchUserData(token);
+
+      if (userData) {
+        dispatch(setLogged(true));
+        dispatch(setErrorState(""));
+        dispatch(setUser(userData.user));
+      } else {
+        return;
+      }
+    } catch (error) {
+      dispatch(setErrorState(error));
+    }
+  };
 
   useEffect(() => {
     dispatch(checkAuth());

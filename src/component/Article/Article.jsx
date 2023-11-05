@@ -6,20 +6,23 @@ import { Popconfirm, message } from "antd";
 import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 
-import heartFalse from "../../assets/heartFalse.svg";
-import heartTrue from "../../assets/heartTrue.svg";
-import { postFavorited, delFavorited, deleteArticle } from "../API/articleAPI";
+import heartFalse from "../../assets/img/heartFalse.svg";
+import heartTrue from "../../assets/img/heartTrue.svg";
+import {
+  postFavorited,
+  delFavorited,
+  deleteArticle,
+} from "../../service/API/articleAPI";
 
 import styles from "./Article.module.scss";
+import defaultAuthorImage from "../../assets/img/defaultAuthorImage.png";
 
-export default function Article({ data, checkSlug, showmore }) {
+function Article({ data, checkSlug, showmore }) {
   const { user, logged } = useSelector((state) => state.reduserLogin);
   const [active, setActive] = useState(data.favorited);
   const [count, setCount] = useState(data.favoritesCount);
   const [error, setError] = useState(false);
-  const image = data.author.image
-    ? data.author.image
-    : "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
+  const image = data.author.image ? data.author.image : defaultAuthorImage;
   const history = useHistory();
 
   useEffect(() => {
@@ -137,3 +140,5 @@ Article.propTypes = {
   data: PropTypes.object,
   showmore: PropTypes.bool,
 };
+
+export { Article };

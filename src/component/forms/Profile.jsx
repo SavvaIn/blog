@@ -11,7 +11,7 @@ import { profileSchema } from "../Yup/yup";
 
 import styles from "../App/App.module.scss";
 
-export default function Profile() {
+function Profile() {
   const dispatch = useDispatch();
   const { errorState } = useSelector((state) => state.reduserLogin);
   const { user } = useSelector((state) => state.reduserLogin);
@@ -143,3 +143,5 @@ export default function Profile() {
     </div>
   );
 }
+
+export { Profile };
